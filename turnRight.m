@@ -1,7 +1,7 @@
 function turnRight(brick)
-    brick.MoveMotor('C',45);
-    brick.MoveMotor('D',-45);
-    pause(0.8);
+    brick.MoveMotor('C',20);
+    brick.MoveMotor('D',-100);
+    pause(0.9);
     brick.StopMotor('C');
     brick.StopMotor('D');
 end

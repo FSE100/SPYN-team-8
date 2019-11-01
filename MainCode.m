@@ -115,9 +115,14 @@ while 1
             pause(0.5)
             brick.StopMotor('C');
             brick.StopMotor('D');
-        case 0
-            brick.MoveMotor('A', 10);
-            pause(0.25);
+        case 'w'
+            brick.MoveMotor('A', 5);
+            pause(.1);
+            brick.StopMotor('A');
+        case 's'
+            brick.MoveMotor('A', -5);
+            pause(.1);
+                brick.StopMotor('A');
         case 'q'
             CloseKeyboard();
     end
