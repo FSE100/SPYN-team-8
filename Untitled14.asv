@@ -1,0 +1,21 @@
+brick.SetColorMode(4, 2);
+pickup = 0;
+while color ~= 3 && pickup == 0 %while passenger hasn't been picked up yet
+    moveForward (brick);
+    right = brick.UltrasonicDist(1);
+    color = brick.ColorCode(4);
+    touch = b
+    if color == 5
+        brick.StopAllMotors();
+        pause(4);
+        brick.beep;
+    end
+    if right >= 40
+        turnRight (brick);
+    end
+    if brick.TouchPressed(2) == 1
+            moveBackward (brick);
+            pause(1);
+            turnRight (brick);
+    end
+end
