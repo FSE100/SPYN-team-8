@@ -3,8 +3,8 @@ function turnRight(brick)
     pause(3);
     brick.StopAllMotors();
     brick.MoveMotor('C',20);
-    brick.MoveMotor('D',-50);
-    pause(1.8);
+    brick.MoveMotor('D',-60);
+    pause(4.5);
     brick.StopMotor('C');
     brick.StopMotor('D');
     

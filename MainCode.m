@@ -9,7 +9,8 @@ pickup = 0;
 while color ~= 3 && pickup == 0 %while passenger hasn't been picked up yet
     moveForward (brick);
     right = brick.UltrasonicDist(1);
-    touch = brick.TouchPressed(2);
+    touchL = brick.TouchPressed(2);
+    touchR = brick.TouchPressed(3);
     if color == 5
         brick.StopAllMotors();
         pause(4);
@@ -19,11 +20,12 @@ while color ~= 3 && pickup == 0 %while passenger hasn't been picked up yet
         display(right);
         turnRight (brick);
     end
-    if touch
-        display(touch);
+    if touchL
+        display(touchL);
+        display(touchR);
         moveBackward (brick);
         pause(1);
-        turnRightReverse (brick);
+        turnLeft (brick);
         color = brick.ColorCode(4);
     end
 end
@@ -74,7 +76,8 @@ while color ~= 2 && pickup == 1 %while passenger has been picked up
     
     moveForward (brick);
     right = brick.UltrasonicDist(1);
-    touch = brick.TouchPressed(2);
+    touchL = brick.TouchPressed(2);
+    touchR = brick.TouchPressed(3);
     if color == 5
         brick.StopAllMotors();
         pause(4);
@@ -84,13 +87,14 @@ while color ~= 2 && pickup == 1 %while passenger has been picked up
         display(right);
         turnRight (brick);
     end
-    if touch
-        display(touch);
+    if xor(touchL, touchR)
+        display(touchL);
+        display(touchR);
         moveBackward (brick);
         pause(1);
-        turnRightReverse (brick);
+        turnLeft (brick);
+        color = brick.ColorCode(4);
     end
-    color = brick.ColorCode(4);
 end
 if color ==2 && pickup ==1
     while 1
