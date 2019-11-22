@@ -7,26 +7,36 @@ brick.SetColorMode(4, 2);
 color = brick.ColorCode(4);
 pickup = 0;
 while color ~= 3 && pickup == 0 %while passenger hasn't been picked up yet
-    moveForward (brick);
-    right = brick.UltrasonicDist(1);
-    touchL = brick.TouchPressed(2);
-    touchR = brick.TouchPressed(3);
+    disp('******')
+    disp(color);
     if color == 5
+        disp(color);
         brick.StopAllMotors();
         pause(4);
         brick.beep;
     end
-    if right >= 40
+    moveForward (brick);
+    right = brick.UltrasonicDist(1);
+    touchL = brick.TouchPressed(2);
+    touchR = brick.TouchPressed(3);
+    disp('======');
+    disp(right);
+    if right >= 100
         display(right);
         turnRight (brick);
     end
-    if touchL
+    if touchL || touchR
         display(touchL);
         display(touchR);
-        moveBackward (brick);
-        pause(1);
-        turnLeft (brick);
-        color = brick.ColorCode(4);
+        if right >= 100
+            display(right);
+            turnRightReverse (brick);
+        else
+            moveBackward (brick);
+            pause(1);
+            turnLeft (brick);
+            color = brick.ColorCode(4);
+        end
     end
 end
 if color == 3
@@ -96,9 +106,11 @@ while color ~= 2 && pickup == 1 %while passenger has been picked up
         color = brick.ColorCode(4);
     end
 end
+
 if color ==2 && pickup ==1
+    InitKeyboard();
     while 1
-        pause (0.1);
+        pause(0.1);
         switch key
             case 'uparrow'
                 brick.MoveMotor('C',-20);
